@@ -1,3 +1,11 @@
+$colors : (background: RGB(39,76,67));
+
+* {
+  font-family: 'Fredericka the Great';
+  color: white;
+  font-weight: 400;
+}
+
 html {
   height: 100%;
 }
@@ -7,27 +15,107 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  background-color: map-get($colors, background);
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+
+  h1 {
+    font-size: 5rem;
+    margin: 1.5rem;
+  }
+
+button {
+  background-color: #DDDDDD;
+  color: map-get($colors, background);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  width: 200px;
+
+  &:hover {
+    cursor: pointer;
+  }
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90%;
 }
 
 #gameboard {
   display: grid;
+  width: 300px;
+  height: 300px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 5px;
 }
 
 .boardgame-box {
-  font-size: 2rem;
-  border: 1px solid black;
-  width: 3rem;
-  height: 3rem;
+  font-size: 3.5rem;
+  border: 3px solid #dddddd;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:hover {
-    background-color: grey;
+    background-color: #dddddd48;
+    cursor: pointer;
   }
+}
+
+.turn-display {
+  font-size: 1.5rem;
+  margin: 8px;
+}
+
+// Modals
+.backdrop {
+  display: none;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  background-color: #77777788;
+}
+
+.options-modal {
+  display: none;
+  border: 5px solid #dddddd;
+  border-radius: 5px;
+  background-color: map-get($colors, background);
+  padding: 1rem;
+  width: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+
+  h2 {
+    margin: 0;
+    margin-bottom: 16px;
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+.input-group {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+form input[type="text"] {
+  width: 300px;
 }

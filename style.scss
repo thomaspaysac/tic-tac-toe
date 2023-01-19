@@ -16,7 +16,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: map-get($colors, background);
+  //background-color: map-get($colors, background);
+  background: url('./images/background.jpg');
 }
 
 header {

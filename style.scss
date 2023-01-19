@@ -18,10 +18,14 @@ body {
   gap: 5px;
 }
 
-.boardgame-square {
+.boardgame-box {
+  font-size: 2rem;
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: grey;

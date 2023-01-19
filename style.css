@@ -15,11 +15,15 @@ body {
   grid-template-rows: repeat(3, 1fr);
   gap: 5px; }
 
-.boardgame-square {
+.boardgame-box {
+  font-size: 2rem;
   border: 1px solid black;
   width: 3rem;
-  height: 3rem; }
-  .boardgame-square:hover {
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .boardgame-box:hover {
     background-color: grey; }
 
 /*# sourceMappingURL=style.css.map */

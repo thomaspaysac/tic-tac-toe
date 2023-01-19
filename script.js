@@ -6,7 +6,16 @@ const gameBoard = (() => {
 })();
 
 // Your players are also going to be stored in objects : factory function
+const Player = (playerName, mark, isPlaying) => {
+  this.playerName = playerName;
+  this.mark = mark;
+  this.isPlaying = isPlaying;
 
+  return { playerName, mark, isPlaying};
+};
+
+let player1 = Player('Player One', 'X', true);
+let player2 = Player('Player Two', 'O', false);
 
 // An object to control the flow of the game itself.
 //
@@ -29,7 +38,10 @@ const getBoxID = (() => {
 
 // Fill the array with players' moves
 const addMoveToArray = (boxId) => {
-  gameBoard.gameBoardArray[boxId] = 'X';
+  if (gameBoard.gameBoardArray[boxId] === undefined) {
+  player1.isPlaying? gameBoard.gameBoardArray[boxId] = player1.mark : gameBoard.gameBoardArray[boxId] = player2.mark;
+  }
+  player1.isPlaying = !player1.isPlaying;
 };
 
 // Edit DOM to display moves

@@ -5,7 +5,9 @@ const turnDisplay = document.querySelector('.turn-display');
 const gameBoard = (() => {
   const gameBoardArray = [];
 
-  return { gameBoardArray };
+  return { 
+    gameBoardArray,
+  };
 })();
 
 
@@ -32,12 +34,13 @@ const gameFlow = (() => {
     boardGameBox.forEach(box => {
       box.addEventListener('click', (e) => {
       boxId = e.target.id; // Get the ID of the clicked box
-      if (gameBoard.gameBoardArray[boxId] === undefined) {
-      addMoveToArray(boxId);
-      addMoveToDisplay(e.target, boxId);
-      turnChange();
+      if (gameBoard.gameBoardArray[boxId] === undefined) { // Authorize move only if the clicked box is empty
+        addMoveToArray(boxId);
+        addMoveToDisplay(e.target, boxId);
+        turnChange();
+        //checkWin(gameBoard.gameBoardArray);
       }
-      console.log(gameBoard.gameBoardArray);
+      //console.log(gameBoard.gameBoardArray);
       });
     });
   };
@@ -61,6 +64,10 @@ const gameFlow = (() => {
     player1.isPlaying? turnDisplay.textContent = `Player One\'s turn ( ${player1.mark} )` : turnDisplay.textContent = `Player Two\'s turn ( ${player2.mark} )`;
   };
 
+  /*const checkWin = (board) => {
+      
+  };*/
+
   return {
     launchGame
   };
@@ -71,7 +78,9 @@ const gameFlow = (() => {
 const newGame = (() => {
   document.getElementById('start-game__btn').addEventListener('click', () => {
     gameBoard.gameBoardArray = []; // Reset current game
-    turnDisplay.textContent = `Player One\'s turn`;
+    player1.isPlaying = true;
+    player2.isPlaying = false;
+    turnDisplay.textContent = `Player One\'s turn ( X )`;
     document.querySelectorAll('.boardgame-box').forEach(box => {
       box.textContent = '';
     });

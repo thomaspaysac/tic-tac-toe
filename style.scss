@@ -29,6 +29,10 @@ header {
   h1 {
     font-size: 5rem;
     margin: 1.5rem;
+
+  @media (max-width: 40rem) {
+    font-size: 3rem;
+  }
   }
 
 button {
@@ -78,6 +82,27 @@ main {
 .turn-display {
   font-size: 1.5rem;
   margin: 8px;
+}
+
+footer {
+  width: 100%;
+  background-color: map-get($colors, background);
+  position: fixed;
+  bottom: 0;
+  color: white;
+  text-align: center;
+  height: 8vh;
+  padding: 1rem 0;
+  box-shadow: -2px -2px 5px 5px map-get($colors, background);
+}
+
+.footer {
+  font-family: 'Verdana', sans-serif;
+
+  a {
+    font-family: 'Verdana', sans-serif;
+    color: white;
+  }
 }
 
 // Modals

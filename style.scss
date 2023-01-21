@@ -148,6 +148,8 @@ form input[type="text"] {
 
 .game-over-modal {
   display: none;
+  flex-direction: column;
+  align-items: center;
   border: 5px solid #dddddd;
   color: map-get($colors, background);
   border-radius: 5px;
@@ -155,7 +157,7 @@ form input[type="text"] {
   padding: 1rem;
   width: 500px;
   position: fixed;
-  top: 70%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
@@ -163,7 +165,6 @@ form input[type="text"] {
   h2 {
     color: map-get($colors, background);
     margin: 0;
-    margin-bottom: 16px;
     font-size: 2rem;
     text-align: center;
     font-weight: 700;
@@ -173,10 +174,12 @@ form input[type="text"] {
     color: map-get($colors, background);
     font-weight: 700;
     font-size: 1.5rem;
+    text-align: center;
   }
 
   button {
     background-color: map-get($colors, background);
     font-size: 1.5rem;
+    width: 50%;
   }
 }

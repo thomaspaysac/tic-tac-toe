@@ -32,7 +32,7 @@ let player2 = Player('Player Two', 'O', false);
 const gameFlow = (() => {
   const launchGame = () => {
     let boxId;
-    let winner = undefined;
+    let winner;
     const boardGameBox = document.querySelectorAll('.boardgame-box');
     boardGameBox.forEach(box => {
       box.addEventListener('click', (e) => {
@@ -45,6 +45,7 @@ const gameFlow = (() => {
         console.log();
         checkWin(turn);
         if (gameOver) {
+          turnDisplay.textContent = '—  Game Over  —';
           gameOverModal();
         }
       }
@@ -77,9 +78,7 @@ const gameFlow = (() => {
       if (movesBoard[i] !== undefined &&
         movesBoard[i] === movesBoard[i+1] &&
         movesBoard[i] === movesBoard[i+2]) {
-        console.log('win by row');
-        movesBoard[i] === 'X' ? winner = `${player1.playerName}` : winner = `${player2.playerName}`;
-        console.log(winner);
+        movesBoard[i] === 'X' ? winner = player1.playerName : winner = player2.playerName;
         gameOver = true;
       }
       i = i + 3;
@@ -88,29 +87,30 @@ const gameFlow = (() => {
       if (movesBoard[i] !== undefined &&
         movesBoard[i] === movesBoard[i+3] &&
         movesBoard[i] === movesBoard[i+6]) {
-          movesBoard[i] === 'X' ? winner = `${player1.playerName}` : winner = `${player2.playerName}`;
+          movesBoard[i] === 'X' ? winner = player1.playerName : winner = player2.playerName;
           gameOver = true;
-          console.log('win by column');
         }
     }
     if (movesBoard[4] !== undefined && // check diagonals
       (movesBoard[0] === movesBoard[4] && movesBoard[0] === movesBoard[8] ||
       movesBoard[2] === movesBoard[4] && movesBoard[2] === movesBoard[6])) {
-        movesBoard[4] === 'X' ? winner = `${player1.playerName}` : winner = `${player2.playerName}`;
-        console.log('win by diagonal');
+        movesBoard[4] === 'X' ? winner = player1.playerName : winner = player2.playerName;
         gameOver = true;
       }
     if (turn === 9) {
-      console.log('It\'s a tie');
-      winner = 'Tie';
+      winner = 'tie';
       gameOver = true;
     }
   };
 
   const gameOverModal = () => {
-    document.querySelector('.game-over-modal').style.display = 'block';
+    document.querySelector('.game-over-modal').style.display = 'flex';
     document.querySelector('.backdrop').style.display = 'block';
+    if (winner === 'tie') {
+      document.querySelector('.winner-text').textContent = `It's a tie!`;
+    } else {
     document.querySelector('.winner-text').textContent = `${winner} wins!`;
+    }
   };
 
   return {

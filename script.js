@@ -1,9 +1,11 @@
 const turnDisplay = document.querySelector('.turn-display');
+let turn;
+let gameOver;
 
 // Store the gameboard as an array inside of a Gameboard object
 //
 const gameBoard = (() => {
-  const gameBoardArray = [];
+  const gameBoardArray = [,,,,,,,,,];
 
   return { 
     gameBoardArray,
@@ -38,9 +40,10 @@ const gameFlow = (() => {
         addMoveToArray(boxId);
         addMoveToDisplay(e.target, boxId);
         turnChange();
-        //checkWin(gameBoard.gameBoardArray);
+        turn++;
+        console.log();
+        checkWin(turn);
       }
-      //console.log(gameBoard.gameBoardArray);
       });
     });
   };
@@ -64,9 +67,36 @@ const gameFlow = (() => {
     player1.isPlaying? turnDisplay.textContent = `Player One\'s turn ( ${player1.mark} )` : turnDisplay.textContent = `Player Two\'s turn ( ${player2.mark} )`;
   };
 
-  /*const checkWin = (board) => {
-      
-  };*/
+  const checkWin = (turn) => {
+    const movesBoard = gameBoard.gameBoardArray;
+    for (let i = 0; i < 7; ) { // check rows
+      if (movesBoard[i] !== undefined &&
+        movesBoard[i] === movesBoard[i+1] &&
+        movesBoard[i] === movesBoard[i+2]) {
+        console.log('win by row');
+        gameOver = true;
+      }
+      i = i + 3;
+    }
+    for (let i = 0; i < 3; i++) { // check columns
+      if (movesBoard[i] !== undefined &&
+        movesBoard[i] === movesBoard[i+3] &&
+        movesBoard[i] === movesBoard[i+6]) {
+          gameOver = true;
+          console.log('win by column');
+        }
+    }
+    if (movesBoard[4] !== undefined && // check diagonals
+      (movesBoard[0] === movesBoard[4] && movesBoard[0] === movesBoard[8] ||
+      movesBoard[2] === movesBoard[4] && movesBoard[2] === movesBoard[6])) {
+        console.log('win by diagonal');
+        gameOver = true;
+      }
+    if (turn === 9) {
+      console.log('It\'s a tie');
+      gameOver = true;
+    }
+  };
 
   return {
     launchGame
@@ -77,7 +107,9 @@ const gameFlow = (() => {
 // User interface
 const newGame = (() => {
   document.getElementById('start-game__btn').addEventListener('click', () => {
+    gameOver = false;
     gameBoard.gameBoardArray = []; // Reset current game
+    turn = 0;
     player1.isPlaying = true;
     player2.isPlaying = false;
     turnDisplay.textContent = `Player One\'s turn ( X )`;

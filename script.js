@@ -12,7 +12,6 @@ const gameBoard = (() => {
   };
 })();
 
-
 // Players created via factory function
 //
 const Player = (playerName, mark, isPlaying) => {
@@ -22,6 +21,7 @@ const Player = (playerName, mark, isPlaying) => {
 
   return { playerName, mark, isPlaying};
 };
+
 
 let player1 = Player('Player One', 'X', true);
 let player2 = Player('Player Two', 'O', false);
@@ -119,7 +119,7 @@ const gameFlow = (() => {
 })();
 
 
-// Initialize game
+// Initialize game, set all variables to default state and empty the gameBoard array
 const newGame = (() => {
   document.getElementById('start-game__btn').addEventListener('click', () => {
     gameOver = false;
@@ -143,37 +143,3 @@ const modalsHandler = (() => {
     document.querySelector('.backdrop').style.display = 'none';
   });
 })();
-
-
-// OLD CODE
-
-// Write a JavaScript function that will render the contents of the gameboard array to the webpage
-// Get the ID of the clicked box
-/*const getBoxID = (() => {
-  let boxId;
-  const boardGameBox = document.querySelectorAll('.boardgame-box');
-  boardGameBox.forEach(box => {
-    box.addEventListener('click', (e) => {
-    boxId = e.target.id;
-    addMoveToArray(boxId);
-    addMoveToDisplay(e.target, boxId);
-    console.log(gameBoard.gameBoardArray);
-    });
-  });
-
-  return { boxId };
-})();
-
-// Fill the array with players' moves
-const addMoveToArray = (boxId) => {
-  if (gameBoard.gameBoardArray[boxId] === undefined) {
-  player1.isPlaying? gameBoard.gameBoardArray[boxId] = player1.mark : gameBoard.gameBoardArray[boxId] = player2.mark;
-  }
-  player1.isPlaying = !player1.isPlaying;
-};
-
-// Edit DOM to display moves
-const addMoveToDisplay = (target, boxId) => {
-  target.textContent= gameBoard.gameBoardArray[boxId];
-};*/
-

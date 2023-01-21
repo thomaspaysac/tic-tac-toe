@@ -2,7 +2,6 @@ $colors : (background: RGB(39,76,67));
 
 * {
   font-family: 'Fredericka the Great';
-  color: white;
   font-weight: 400;
 }
 
@@ -11,6 +10,7 @@ html {
 }
 
 body {
+  color: white;
   margin: 0;
   height: 100%;
   display: flex;
@@ -37,14 +37,24 @@ header {
 
 button {
   background-color: #DDDDDD;
+  border: 1px solid map-get($colors, background);
+  border-radius: 3px;
   color: map-get($colors, background);
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
   width: 200px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.544);
 
   &:hover {
     cursor: pointer;
+  }
+
+  &:active {
+    color: #dddddd;
+    border-color: #dddddd;
+    background-color: map-get($colors, background);
+    transform: translateY(2px);
   }
   }
 }
@@ -144,13 +154,15 @@ footer {
 
 form input[type="text"] {
   width: 300px;
+  color: black;
+  font-family: 'Verdana', sans-serif;
 }
 
 .game-over-modal {
   display: none;
   flex-direction: column;
   align-items: center;
-  border: 5px solid #dddddd;
+  border: 5px solid map-get($colors, background);
   color: map-get($colors, background);
   border-radius: 5px;
   background-color: #ddddddd4;
@@ -161,6 +173,10 @@ form input[type="text"] {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
+
+  @media (max-width: 40rem) {
+    width: 90%;
+  }
 
   h2 {
     color: map-get($colors, background);
@@ -179,6 +195,7 @@ form input[type="text"] {
 
   button {
     background-color: map-get($colors, background);
+    color: #ffffff;
     font-size: 1.5rem;
     width: 50%;
   }

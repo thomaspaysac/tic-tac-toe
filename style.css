@@ -1,12 +1,12 @@
 * {
   font-family: 'Fredericka the Great';
-  color: white;
   font-weight: 400; }
 
 html {
   height: 100%; }
 
 body {
+  color: white;
   margin: 0;
   height: 100%;
   display: flex;
@@ -27,13 +27,21 @@ header {
         font-size: 3rem; } }
   header button {
     background-color: #DDDDDD;
+    border: 1px solid RGB(39, 76, 67);
+    border-radius: 3px;
     color: RGB(39, 76, 67);
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
-    width: 200px; }
+    width: 200px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.544); }
     header button:hover {
       cursor: pointer; }
+    header button:active {
+      color: #dddddd;
+      border-color: #dddddd;
+      background-color: RGB(39, 76, 67);
+      transform: translateY(2px); }
 
 main {
   display: flex;
@@ -113,13 +121,15 @@ footer {
   justify-content: space-between; }
 
 form input[type="text"] {
-  width: 300px; }
+  width: 300px;
+  color: black;
+  font-family: 'Verdana', sans-serif; }
 
 .game-over-modal {
   display: none;
   flex-direction: column;
   align-items: center;
-  border: 5px solid #dddddd;
+  border: 5px solid RGB(39, 76, 67);
   color: RGB(39, 76, 67);
   border-radius: 5px;
   background-color: #ddddddd4;
@@ -130,6 +140,9 @@ form input[type="text"] {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3; }
+  @media (max-width: 40rem) {
+    .game-over-modal {
+      width: 90%; } }
   .game-over-modal h2 {
     color: RGB(39, 76, 67);
     margin: 0;
@@ -143,6 +156,7 @@ form input[type="text"] {
     text-align: center; }
   .game-over-modal button {
     background-color: RGB(39, 76, 67);
+    color: #ffffff;
     font-size: 1.5rem;
     width: 50%; }
 

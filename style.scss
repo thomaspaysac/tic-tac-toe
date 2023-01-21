@@ -145,3 +145,38 @@ footer {
 form input[type="text"] {
   width: 300px;
 }
+
+.game-over-modal {
+  display: none;
+  border: 5px solid #dddddd;
+  color: map-get($colors, background);
+  border-radius: 5px;
+  background-color: #ddddddd4;
+  padding: 1rem;
+  width: 500px;
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+
+  h2 {
+    color: map-get($colors, background);
+    margin: 0;
+    margin-bottom: 16px;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  p {
+    color: map-get($colors, background);
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  button {
+    background-color: map-get($colors, background);
+    font-size: 1.5rem;
+  }
+}

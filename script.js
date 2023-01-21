@@ -32,17 +32,21 @@ let player2 = Player('Player Two', 'O', false);
 const gameFlow = (() => {
   const launchGame = () => {
     let boxId;
+    let winner = undefined;
     const boardGameBox = document.querySelectorAll('.boardgame-box');
     boardGameBox.forEach(box => {
       box.addEventListener('click', (e) => {
       boxId = e.target.id; // Get the ID of the clicked box
-      if (gameBoard.gameBoardArray[boxId] === undefined) { // Authorize move only if the clicked box is empty
+      if (gameBoard.gameBoardArray[boxId] === undefined && !gameOver) { // Authorize move only if the clicked box is empty
         addMoveToArray(boxId);
         addMoveToDisplay(e.target, boxId);
         turnChange();
         turn++;
         console.log();
         checkWin(turn);
+        if (gameOver) {
+          gameOverModal();
+        }
       }
       });
     });
@@ -74,6 +78,8 @@ const gameFlow = (() => {
         movesBoard[i] === movesBoard[i+1] &&
         movesBoard[i] === movesBoard[i+2]) {
         console.log('win by row');
+        movesBoard[i] === 'X' ? winner = `${player1.playerName}` : winner = `${player2.playerName}`;
+        console.log(winner);
         gameOver = true;
       }
       i = i + 3;
@@ -82,6 +88,7 @@ const gameFlow = (() => {
       if (movesBoard[i] !== undefined &&
         movesBoard[i] === movesBoard[i+3] &&
         movesBoard[i] === movesBoard[i+6]) {
+          movesBoard[i] === 'X' ? winner = `${player1.playerName}` : winner = `${player2.playerName}`;
           gameOver = true;
           console.log('win by column');
         }
@@ -89,22 +96,30 @@ const gameFlow = (() => {
     if (movesBoard[4] !== undefined && // check diagonals
       (movesBoard[0] === movesBoard[4] && movesBoard[0] === movesBoard[8] ||
       movesBoard[2] === movesBoard[4] && movesBoard[2] === movesBoard[6])) {
+        movesBoard[4] === 'X' ? winner = `${player1.playerName}` : winner = `${player2.playerName}`;
         console.log('win by diagonal');
         gameOver = true;
       }
     if (turn === 9) {
       console.log('It\'s a tie');
+      winner = 'Tie';
       gameOver = true;
     }
   };
 
+  const gameOverModal = () => {
+    document.querySelector('.game-over-modal').style.display = 'block';
+    document.querySelector('.backdrop').style.display = 'block';
+    document.querySelector('.winner-text').textContent = `${winner} wins!`;
+  };
+
   return {
-    launchGame
+    launchGame,
   };
 })();
 
 
-// User interface
+// Initialize game
 const newGame = (() => {
   document.getElementById('start-game__btn').addEventListener('click', () => {
     gameOver = false;
@@ -120,6 +135,14 @@ const newGame = (() => {
   });
 })();
 
+// Modals
+const modalsHandler = (() => {
+  document.querySelector('.close-modal__btn').addEventListener('click', () => {
+    document.querySelector('.options-modal').style.display = 'none';
+    document.querySelector('.game-over-modal').style.display = 'none';
+    document.querySelector('.backdrop').style.display = 'none';
+  });
+})();
 
 
 // OLD CODE

@@ -54,18 +54,35 @@ main {
   width: 300px;
   height: 300px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 5px; }
+  grid-template-rows: repeat(3, 1fr); }
 
 .boardgame-box {
   font-size: 3.5rem;
-  border: 3px solid #dddddd;
-  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center; }
-  .boardgame-box:hover {
-    background-color: #dddddd48;
+  .boardgame-box:nth-child(1) {
+    border-bottom: 3px solid #dddddd;
+    border-right: 3px solid #dddddd; }
+  .boardgame-box:nth-child(2) {
+    border-bottom: 3px solid #dddddd; }
+  .boardgame-box:nth-child(3) {
+    border-bottom: 3px solid #dddddd;
+    border-left: 3px solid #dddddd; }
+  .boardgame-box:nth-child(4) {
+    border-right: 3px solid #dddddd; }
+  .boardgame-box:nth-child(6) {
+    border-left: 3px solid #dddddd; }
+  .boardgame-box:nth-child(7) {
+    border-top: 3px solid #dddddd;
+    border-right: 3px solid #dddddd; }
+  .boardgame-box:nth-child(8) {
+    border-top: 3px solid #dddddd; }
+  .boardgame-box:nth-child(9) {
+    border-top: 3px solid #dddddd;
+    border-left: 3px solid #dddddd; }
+  .boardgame-box:hover, .boardgame-box:active {
+    background-color: #dddddd21;
     cursor: pointer; }
 
 .turn-display {
@@ -130,6 +147,9 @@ footer {
     align-self: center; }
     .options-modal input[type="submit"]:hover, .options-modal input[type="submit"]:active {
       cursor: pointer; }
+  @media (max-width: 40rem) {
+    .options-modal {
+      width: 90%; } }
 
 .input-group {
   margin: 10px;
@@ -176,5 +196,7 @@ form input[type="text"] {
     color: #ffffff;
     font-size: 1.5rem;
     width: 50%; }
+    .game-over-modal button:hover, .game-over-modal button:active {
+      cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

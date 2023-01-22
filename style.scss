@@ -71,19 +71,46 @@ main {
   height: 300px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 5px;
 }
 
 .boardgame-box {
   font-size: 3.5rem;
-  border: 3px solid #dddddd;
-  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  &:hover {
-    background-color: #dddddd48;
+  &:nth-child(1) {
+    border-bottom: 3px solid #dddddd;
+    border-right: 3px solid #dddddd;
+  }
+  &:nth-child(2) {
+    border-bottom: 3px solid #dddddd;
+  }
+  &:nth-child(3) {
+    border-bottom: 3px solid #dddddd;
+    border-left: 3px solid #dddddd;
+  }
+  &:nth-child(4) {
+    border-right: 3px solid #dddddd;
+  }
+  &:nth-child(6) {
+    border-left: 3px solid #dddddd;
+  }
+  &:nth-child(7) {
+    border-top: 3px solid #dddddd;
+    border-right: 3px solid #dddddd;
+  }
+  &:nth-child(8) {
+    border-top: 3px solid #dddddd;
+  }
+  &:nth-child(9) {
+    border-top: 3px solid #dddddd;
+    border-left: 3px solid #dddddd;
+  }
+
+  &:hover,
+  &:active {
+    background-color: #dddddd21;
     cursor: pointer;
   }
 }
@@ -166,6 +193,10 @@ footer {
       cursor: pointer;
     }
   }
+
+  @media (max-width: 40rem) {
+    width: 90%;
+  }
 }
 
 .input-group {
@@ -221,5 +252,10 @@ form input[type="text"] {
     color: #ffffff;
     font-size: 1.5rem;
     width: 50%;
+    
+    &:hover,
+    &:active {
+      cursor: pointer;
+    }
   }
 }

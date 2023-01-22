@@ -1,3 +1,4 @@
+const optionsForm = document.getElementById('options-form');
 const turnDisplay = document.querySelector('.turn-display');
 let turn;
 let gameOver;
@@ -23,8 +24,45 @@ const Player = (playerName, mark, isPlaying) => {
 };
 
 
-let player1 = Player('Player One', 'X', true);
-let player2 = Player('Player Two', 'O', false);
+let player1 = Player('', 'X', true);
+let player2 = Player('', 'O', false);
+
+// Start game modal
+const startGameBtnAction = (() => {
+    document.getElementById('start-game__btn').addEventListener('click', () => {
+    document.querySelector('.options-modal').style.display = 'block';
+    document.querySelector('.backdrop').style.display = 'block';
+  });
+})();
+
+// Get infos from form, then start game
+const getFormData = (() => {optionsForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(optionsForm);
+  const optionsData = Object.fromEntries(formData);
+  console.log(optionsData);
+  player1.playerName = optionsData.playerOneName;
+  player2.playerName = optionsData.playerTwoName;
+  document.querySelector('.options-modal').style.display = 'none';
+  document.querySelector('.backdrop').style.display = 'none';
+  newGame();
+  });
+})();
+
+// Initialize game, set all variables to default state and empty the gameBoard array
+const newGame = (() => {
+  gameOver = false;
+  gameBoard.gameBoardArray = []; // Reset current game
+  turn = 0;
+  player1.isPlaying = true;
+  player2.isPlaying = false;
+  turnDisplay.textContent = `${player1.playerName}'s turn ( X )`;
+  document.querySelectorAll('.boardgame-box').forEach(box => {
+    box.textContent = '';
+  });
+  gameFlow.launchGame(); // Launch the game's logic
+});
+
 
 
 // An object to control the flow of the game itself.
@@ -69,7 +107,7 @@ const gameFlow = (() => {
   const turnChange = () => {
     player1.isPlaying = !player1.isPlaying;
     player2.isPlaying = !player2.isPlaying;
-    player1.isPlaying? turnDisplay.textContent = `Player One\'s turn ( ${player1.mark} )` : turnDisplay.textContent = `Player Two\'s turn ( ${player2.mark} )`;
+    player1.isPlaying? turnDisplay.textContent = `${player1.playerName}'s turn ( ${player1.mark} )` : turnDisplay.textContent = `${player2.playerName}'s turn ( ${player2.mark} )`;
   };
 
   const checkWin = (turn) => {
@@ -119,21 +157,21 @@ const gameFlow = (() => {
 })();
 
 
-// Initialize game, set all variables to default state and empty the gameBoard array
-const newGame = (() => {
+
+/*const newGame = (() => {
   document.getElementById('start-game__btn').addEventListener('click', () => {
     gameOver = false;
     gameBoard.gameBoardArray = []; // Reset current game
     turn = 0;
     player1.isPlaying = true;
     player2.isPlaying = false;
-    turnDisplay.textContent = `Player One\'s turn ( X )`;
+    turnDisplay.textContent = `${player1.playerName}'s turn ( X )`;
     document.querySelectorAll('.boardgame-box').forEach(box => {
       box.textContent = '';
     });
     gameFlow.launchGame(); // Launch the game's logic
   });
-})();
+})();*/
 
 // Modals
 const modalsHandler = (() => {

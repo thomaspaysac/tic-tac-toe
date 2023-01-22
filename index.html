@@ -14,17 +14,17 @@
 </head>
 <body>
   <div class="options-modal">
-    <form id="options-form" action="">
+    <form id="options-form" autocomplete="off">
       <h2>Options</h2>
       <div class="input-group">
         <label for="playerOneName">Player One ( X ) : </label>
-        <input type="text" name="playerOneName" id="playerOneName">
+        <input type="text" name="playerOneName" id="playerOneName" value="Player One">
       </div>
       <div class="input-group">
         <label for="playerTwoName">Player Two ( O ) : </label>
-        <input type="text" name="playerTwoName" id="playerTwoName">
+        <input type="text" name="playerTwoName" id="playerTwoName" value="Player Two">
       </div>
-      <input type="submit" value="Start game">
+      <input id="options-submit__btn" type="submit" value="Start game">
     </form>
   </div>
   <div class="game-over-modal">

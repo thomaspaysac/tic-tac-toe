@@ -156,26 +156,14 @@ const gameFlow = (() => {
   };
 })();
 
-
-
-/*const newGame = (() => {
-  document.getElementById('start-game__btn').addEventListener('click', () => {
-    gameOver = false;
-    gameBoard.gameBoardArray = []; // Reset current game
-    turn = 0;
-    player1.isPlaying = true;
-    player2.isPlaying = false;
-    turnDisplay.textContent = `${player1.playerName}'s turn ( X )`;
-    document.querySelectorAll('.boardgame-box').forEach(box => {
-      box.textContent = '';
-    });
-    gameFlow.launchGame(); // Launch the game's logic
-  });
-})();*/
-
 // Modals
 const modalsHandler = (() => {
   document.querySelector('.close-modal__btn').addEventListener('click', () => {
+    document.querySelector('.options-modal').style.display = 'none';
+    document.querySelector('.game-over-modal').style.display = 'none';
+    document.querySelector('.backdrop').style.display = 'none';
+  });
+  document.querySelector('.backdrop').addEventListener('click', () => {
     document.querySelector('.options-modal').style.display = 'none';
     document.querySelector('.game-over-modal').style.display = 'none';
     document.querySelector('.backdrop').style.display = 'none';

@@ -136,6 +136,13 @@ footer {
   display: flex;
   justify-content: space-between; }
 
+#player-type-options__container {
+  display: flex;
+  justify-content: space-evenly; }
+
+.player-type-options__option input[type="radio"] {
+  vertical-align: middle; }
+
 form input[type="text"] {
   width: 300px;
   color: black;

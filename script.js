@@ -1,6 +1,7 @@
 const optionsForm = document.getElementById('options-form');
 const turnDisplay = document.querySelector('.turn-display');
 let turn;
+let AI_mode;
 let gameOver;
 
 // Store the gameboard as an array inside of a Gameboard object
@@ -40,9 +41,13 @@ const getFormData = (() => {optionsForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(optionsForm);
   const optionsData = Object.fromEntries(formData);
-  console.log(optionsData);
   player1.playerName = optionsData.playerOneName;
   player2.playerName = optionsData.playerTwoName;
+  if (optionsData.playerType === 'human') {
+    AI_mode = false;
+  } else if (optionsData.playerType === 'computer') {
+    AI_mode = true;
+  }
   document.querySelector('.options-modal').style.display = 'none';
   document.querySelector('.backdrop').style.display = 'none';
   newGame();
@@ -52,7 +57,7 @@ const getFormData = (() => {optionsForm.addEventListener('submit', (e) => {
 // Initialize game, set all variables to default state and empty the gameBoard array
 const newGame = (() => {
   gameOver = false;
-  gameBoard.gameBoardArray = []; // Reset current game
+  gameBoard.gameBoardArray = [,,,,,,,,,]; // Reset current game
   turn = 0;
   player1.isPlaying = true;
   player2.isPlaying = false;
@@ -78,10 +83,14 @@ const gameFlow = (() => {
       if (gameBoard.gameBoardArray[boxId] === undefined && !gameOver) { // Authorize move only if the clicked box is empty
         addMoveToArray(boxId);
         addMoveToDisplay(e.target, boxId);
-        turnChange();
-        turn++;
-        console.log();
+        if (!AI_mode) {
+          turnChange();
+        } else if (AI_mode && (gameBoard.gameBoardArray).includes(undefined)) {
+          AI_plays();
+          turn++;
+        }
         checkWin(turn);
+        turn++;
         if (gameOver) {
           turnDisplay.textContent = '—  Game Over  —';
           gameOverModal();
@@ -170,15 +179,19 @@ const modalsHandler = (() => {
   });
 })();
 
+
 // Easy AI
 // Generate a number between 0 and 9, fill the array by this index number if it is empty
 const AI_plays = () => {
   let randomIndex = Math.floor(Math.random() * 9);
   if (gameBoard.gameBoardArray[randomIndex] === undefined) {
-  gameBoard.gameBoardArray[randomIndex] = 'AI';
+  gameBoard.gameBoardArray[randomIndex] = 'O';
   // Display move on page
-  (document.getElementById(randomIndex)).textContent = 'AI';
+  const randomIndexTarget = document.getElementById(randomIndex);
+  randomIndexTarget.textContent = 'O';
+  randomIndexTarget.style.color = '#ed7777';
   } else {
     AI_plays();
   }
+  turnDisplay.textContent = `${player1.playerName}'s turn ( ${player1.mark} )`;
 };

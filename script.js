@@ -169,3 +169,16 @@ const modalsHandler = (() => {
     document.querySelector('.backdrop').style.display = 'none';
   });
 })();
+
+// Easy AI
+// Generate a number between 0 and 9, fill the array by this index number if it is empty
+const AI_plays = () => {
+  let randomIndex = Math.floor(Math.random() * 9);
+  if (gameBoard.gameBoardArray[randomIndex] === undefined) {
+  gameBoard.gameBoardArray[randomIndex] = 'AI';
+  // Display move on page
+  (document.getElementById(randomIndex)).textContent = 'AI';
+  } else {
+    AI_plays();
+  }
+};

@@ -88,6 +88,7 @@ const gameFlow = (() => {
         } else if (AI_mode && (gameBoard.gameBoardArray).includes(undefined)) {
           AI_plays();
           turn++;
+          checkWin(turn);
         }
         checkWin(turn);
         turn++;

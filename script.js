@@ -90,8 +90,8 @@ const gameFlow = (() => {
           turn++;
           checkWin(turn);
         }
-        checkWin(turn);
         turn++;
+        checkWin(turn);
         if (gameOver) {
           turnDisplay.textContent = '—  Game Over  —';
           gameOverModal();
@@ -100,7 +100,7 @@ const gameFlow = (() => {
       });
     });
   };
-
+  
   // Fill the array with players' moves
   const addMoveToArray = (boxId) => {
     if (gameBoard.gameBoardArray[boxId] === undefined) {

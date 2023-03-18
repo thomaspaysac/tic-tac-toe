@@ -144,11 +144,10 @@ const gameFlow = (() => {
       movesBoard[2] === movesBoard[4] && movesBoard[2] === movesBoard[6])) {
         movesBoard[4] === 'X' ? winner = player1.playerName : winner = player2.playerName;
         gameOver = true;
-      }
-    if (turn === 9) {
+      } else if (!gameBoard.gameBoardArray.includes(undefined)) {
       winner = 'tie';
       gameOver = true;
-    }
+      }
   };
 
   const gameOverModal = () => {
